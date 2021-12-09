@@ -1,0 +1,19 @@
+{
+    "name": "Limo",
+    "symbol": "",
+    "image": "2.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "2.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "HWFLyruAsgCtEx3195rMEsgunPudG1TXg8fLpTSQjcfa",
+          "share": 100
+        }
+      ]
+    }
+  }
