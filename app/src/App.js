@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import twitterLogo from './assets/twitter-logo.svg';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import twitterLogo from "./assets/twitter-logo.svg";
+import CandyMachine from "./CandyMachine";
 
 // Constants
-const TWITTER_HANDLE = '_buildspace';
+const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
-
   const [walletAddress, setWalletAddress] = useState(null);
 
   const checkIfWalletIsConnected = async () => {
@@ -18,9 +18,9 @@ const App = () => {
         if (solana.isPhantom) {
           console.log("Phantom Wallet Found!");
 
-          const response = await solana.connect({ onlyIfTrusted: true});
+          const response = await solana.connect({ onlyIfTrusted: true });
           console.log(
-            'Connected with Public Key:',
+            "Connected with Public Key:",
             response.publicKey.toString()
           );
 
@@ -37,7 +37,7 @@ const App = () => {
   const connectWallet = async () => {
     const { solana } = window;
 
-    if(solana) {
+    if (solana) {
       const response = await solana.connect();
       console.log("Connected with Public Key:", response.publicKey.toString());
       setWalletAddress(response.publicKey.toString());
@@ -57,8 +57,8 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   return (
@@ -69,6 +69,7 @@ const App = () => {
           <p className="sub-text">NFT drop machine with fair mint</p>
           {!walletAddress && renderNotConnectedContainer()}
         </div>
+        {walletAddress && <CandyMachine walletAddress={window.solana} />}
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
